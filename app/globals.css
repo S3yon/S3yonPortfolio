@@ -181,7 +181,7 @@
   }
 }
 
-[data-theme="light\"] @keyframes animate-wave-shadow {
+[data-theme="light"] @keyframes animate-wave-shadow {
   0%,
   100% {
   box-shadow:
@@ -192,75 +192,32 @@
     -75px 75px 75px -6px rgba(0, 0, 0, 0.28),
     -150px 150px 150px -12px rgba(0, 0, 0, 0.35);
 }
-\
   25% {
-box-shadow: 
-\
-      0
-px 0px 0px 1px rgba(0, 0, 0, 0.08),
-\
-      -7
-px 11px 9px -0.5px rgba(0, 0, 0, 0.08),
-\
-      -14
-px 22px 18px -1.5px rgba(0, 0, 0, 0.12),
-\
-      -29
-px 45px 37px -3px rgba(0, 0, 0, 0.2),
-\
-      -75
-px 75px 75px -6px rgba(0, 0, 0, 0.28),
-\
-      -150
-px 150px 150px -12px rgba(0, 0, 0, 0.35
-)
-;
+    box-shadow: 
+      0px 0px 0px 1px rgba(0, 0, 0, 0.08),
+      -7px 11px 9px -0.5px rgba(0, 0, 0, 0.08),
+      -14px 22px 18px -1.5px rgba(0, 0, 0, 0.12),
+      -29px 45px 37px -3px rgba(0, 0, 0, 0.2),
+      -75px 75px 75px -6px rgba(0, 0, 0, 0.28),
+      -150px 150px 150px -12px rgba(0, 0, 0, 0.35);
   }
   50% {
-box-shadow: 
-\
-      0
-px 0px 0px 1px rgba(0, 0, 0, 0.08),
-\
-      -9
-px 9px 9px -0.5px rgba(0, 0, 0, 0.08),
-\
-      -18
-px 18px 18px -1.5px rgba(0, 0, 0, 0.12),
-\
-      -37
-px 37px 37px -3px rgba(0, 0, 0, 0.2),
-\
-      -75
-px 75px 75px -6px rgba(0, 0, 0, 0.28),
-\
-      -150
-px 150px 150px -12px rgba(0, 0, 0, 0.35
-)
-;
+    box-shadow: 
+      0px 0px 0px 1px rgba(0, 0, 0, 0.08),
+      -9px 9px 9px -0.5px rgba(0, 0, 0, 0.08),
+      -18px 18px 18px -1.5px rgba(0, 0, 0, 0.12),
+      -37px 37px 37px -3px rgba(0, 0, 0, 0.2),
+      -75px 75px 75px -6px rgba(0, 0, 0, 0.28),
+      -150px 150px 150px -12px rgba(0, 0, 0, 0.35);
   }
   75% {
-box-shadow: 
-\
-      0
-px 0px 0px 1px rgba(0, 0, 0, 0.08),
-\
-      -11
-px 7px 9px -0.5px rgba(0, 0, 0, 0.08),
-\
-      -22
-px 14px 18px -1.5px rgba(0, 0, 0, 0.12),
-\
-      -45
-px 29px 37px -3px rgba(0, 0, 0, 0.2),
-\
-      -75
-px 75px 75px -6px rgba(0, 0, 0, 0.28),
-\
-      -150
-px 150px 150px -12px rgba(0, 0, 0, 0.35
-)
-;
+    box-shadow: 
+      0px 0px 0px 1px rgba(0, 0, 0, 0.08),
+      -11px 7px 9px -0.5px rgba(0, 0, 0, 0.08),
+      -22px 14px 18px -1.5px rgba(0, 0, 0, 0.12),
+      -45px 29px 37px -3px rgba(0, 0, 0, 0.2),
+      -75px 75px 75px -6px rgba(0, 0, 0, 0.28),
+      -150px 150px 150px -12px rgba(0, 0, 0, 0.35);
   }
 }
 

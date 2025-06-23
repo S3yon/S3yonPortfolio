@@ -50,8 +50,8 @@ export default function Header({ isFullscreen, onMouseDown, toggleFullscreen }: 
       <p className="mx-auto hidden font-medium select-none lg:block text-text-primary">s3yon</p>
       <p className="mx-auto block font-medium select-none lg:hidden text-text-primary">s3yon</p>
 
-      {/* Dark/Light Mode Toggle */}
-      <div className="hidden lg:flex items-center">
+      {/* Dark/Light Mode Toggle - Now visible on both mobile and desktop */}
+      <div className="flex items-center">
         <button
           onClick={toggleTheme}
           className="flex items-center justify-center w-8 h-8 rounded-full bg-bg-tertiary/50 border border-border-secondary hover:bg-bg-tertiary/80 transition-all duration-300 group"
