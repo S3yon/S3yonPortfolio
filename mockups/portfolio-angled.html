@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S3yon Portfolio - Angled Mockup</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0f0f23 0%, #1e1e3f 50%, #2a2a5a 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            perspective: 1500px;
+        }
+        
+        .device-container {
+            display: flex;
+            gap: 120px;
+            align-items: center;
+        }
+        
+        .device {
+            position: relative;
+        }
+        
+        .desktop {
+            width: 600px;
+            height: 380px;
+        }
+        
+        .tablet {
+            width: 350px;
+            height: 500px;
+        }
+        
+        .mobile {
+            width: 280px;
+            height: 550px;
+        }
+        
+        .desktop.left {
+            transform: rotateY(25deg) rotateX(8deg) translateZ(-100px);
+        }
+        
+        .tablet.center {
+            transform: rotateY(0deg) rotateX(10deg);
+            z-index: 2;
+        }
+        
+        .mobile.right {
+            transform: rotateY(-20deg) rotateX(8deg) translateZ(-80px);
+        }
+        
+        .screen {
+            width: 100%;
+            height: 100%;
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 12px;
+            box-shadow: 
+                0 0 0 3px #333,
+                0 35px 70px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        
+        .mobile .screen {
+            border-radius: 25px;
+            padding: 8px;
+        }
+        
+        .screen-content {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .mobile .screen-content {
+            border-radius: 20px;
+        }
+        
+        /* Browser/App Header */
+        .browser-header {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .mobile .browser-header {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 8px 15px;
+        }
+        
+        .browser-dots {
+            display: flex;
+            gap: 6px;
+        }
+        
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        
+        .mobile .dot {
+            width: 6px;
+            height: 6px;
+        }
+        
+        .dot.red { background: #ff5f57; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #28ca42; }
+        
+        .address-bar {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 6px 12px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+            margin-left: 15px;
+        }
+        
+        .mobile .address-bar {
+            display: none;
+        }
+        
+        /* Content Area */
+        .content-area {
+            padding: 25px 30px;
+            height: calc(100% - 60px);
+            display: flex;
+            flex-direction: column;
+            color: white;
+        }
+        
+        .mobile .content-area {
+            padding: 20px 20px;
+            height: calc(100% - 45px);
+        }
+        
+        .portfolio-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .portfolio-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .mobile .portfolio-title {
+            font-size: 24px;
+        }
+        
+        .portfolio-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .mobile .portfolio-subtitle {
+            font-size: 14px;
+        }
+        
+        .tech-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+        
+        .tech-badge {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .mobile .tech-badge {
+            font-size: 10px;
+            padding: 4px 8px;
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            flex: 1;
+        }
+        
+        .mobile .features-grid {
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .mobile .feature-card {
+            padding: 12px;
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .mobile .feature-icon {
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+        
+        .feature-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        
+        .mobile .feature-title {
+            font-size: 12px;
+        }
+        
+        .feature-desc {
+            font-size: 11px;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+        
+        .mobile .feature-desc {
+            font-size: 10px;
+        }
+        
+        /* Particle Effect Simulation */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) translateX(50px); opacity: 0; }
+        }
+        
+        /* Grid Pattern Simulation */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+        
+        /* Device Stands/Bases */
+        .desktop-stand {
+            width: 80px;
+            height: 50px;
+            background: linear-gradient(135deg, #333, #555);
+            border-radius: 0 0 12px 12px;
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .desktop-base {
+            width: 200px;
+            height: 12px;
+            background: linear-gradient(135deg, #444, #666);
+            border-radius: 6px;
+            position: absolute;
+            bottom: -62px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .tablet-stand {
+            width: 120px;
+            height: 20px;
+            background: linear-gradient(135deg, #333, #555);
+            border-radius: 10px;
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Special Effects Indicators */
+        .effects-demo {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+        }
+        
+        .grain-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4"/></filter></defs><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.05"/></svg>');
+            animation: grain 8s steps(10) infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes grain {
+            0%, 100% { transform: translate(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translate(-5%, -10%); }
+            20%, 40%, 60%, 80% { transform: translate(-15%, -20%); }
+        }
+    </style>
+</head>
+<body>
+    <div class="device-container">
+        <!-- Desktop View - Main Portfolio -->
+        <div class="device desktop left">
+            <div class="screen">
+                <div class="screen-content">
+                    <div class="grid-overlay"></div>
+                    <div class="grain-effect"></div>
+                    <div class="particles">
+                        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+                        <div class="particle" style="left: 25%; animation-delay: 2s;"></div>
+                        <div class="particle" style="left: 40%; animation-delay: 4s;"></div>
+                        <div class="particle" style="left: 60%; animation-delay: 6s;"></div>
+                        <div class="particle" style="left: 80%; animation-delay: 8s;"></div>
+                    </div>
+                    
+                    <div class="browser-header">
+                        <div class="browser-dots">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                        </div>
+                        <div class="address-bar">s3yon.dev - Portfolio</div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div class="portfolio-header">
+                            <div class="portfolio-title">💼 S3yon Portfolio</div>
+                            <div class="portfolio-subtitle">Modern Next.js Portfolio with Advanced Effects</div>
+                            <div class="tech-badges">
+                                <span class="tech-badge">Next.js 14</span>
+                                <span class="tech-badge">TypeScript</span>
+                                <span class="tech-badge">Tailwind CSS</span>
+                                <span class="tech-badge">React</span>
+                                <span class="tech-badge">shadcn/ui</span>
+                            </div>
+                        </div>
+                        
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">✨</div>
+                                <div class="feature-title">Advanced Visual Effects</div>
+                                <div class="feature-desc">Film grain noise and particle systems with edge-aware alpha blending</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📱</div>
+                                <div class="feature-title">Responsive Design</div>
+                                <div class="feature-desc">Mobile-first approach with seamless device adaptation</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🌙</div>
+                                <div class="feature-title">Theme System</div>
+                                <div class="feature-desc">Dynamic dark/light theme with smooth transitions</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🎯</div>
+                                <div class="feature-title">Interactive Animations</div>
+                                <div class="feature-desc">Custom particle physics and draggable interfaces</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="effects-demo">500+ Particles • Film Grain</div>
+                </div>
+            </div>
+            <div class="desktop-stand"></div>
+            <div class="desktop-base"></div>
+        </div>
+        
+        <!-- Tablet View - Project Showcase -->
+        <div class="device tablet center">
+            <div class="screen">
+                <div class="screen-content">
+                    <div class="grid-overlay"></div>
+                    <div class="grain-effect"></div>
+                    <div class="particles">
+                        <div class="particle" style="left: 15%; animation-delay: 1s;"></div>
+                        <div class="particle" style="left: 35%; animation-delay: 3s;"></div>
+                        <div class="particle" style="left: 55%; animation-delay: 5s;"></div>
+                        <div class="particle" style="left: 75%; animation-delay: 7s;"></div>
+                    </div>
+                    
+                    <div class="browser-header">
+                        <div class="browser-dots">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                        </div>
+                        <div class="address-bar">s3yon.dev/projects</div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div class="portfolio-header">
+                            <div class="portfolio-title">🚀 Projects</div>
+                            <div class="portfolio-subtitle">Showcasing Technical Excellence</div>
+                        </div>
+                        
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">🏥</div>
+                                <div class="feature-title">ThyroTrack</div>
+                                <div class="feature-desc">AI-powered health monitoring with XGBoost ML</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🎮</div>
+                                <div class="feature-title">UNO Game</div>
+                                <div class="feature-desc">Multiplayer Java game with design patterns</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📊</div>
+                                <div class="feature-title">Records System</div>
+                                <div class="feature-desc">Database management with 15+ complex queries</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">💼</div>
+                                <div class="feature-title">This Portfolio</div>
+                                <div class="feature-desc">Modern Next.js with advanced visual effects</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="effects-demo">Interactive • Responsive</div>
+                </div>
+            </div>
+            <div class="tablet-stand"></div>
+        </div>
+        
+        <!-- Mobile View - About/Contact -->
+        <div class="device mobile right">
+            <div class="screen">
+                <div class="screen-content">
+                    <div class="grid-overlay"></div>
+                    <div class="grain-effect"></div>
+                    <div class="particles">
+                        <div class="particle" style="left: 20%; animation-delay: 0.5s;"></div>
+                        <div class="particle" style="left: 50%; animation-delay: 2.5s;"></div>
+                        <div class="particle" style="left: 80%; animation-delay: 4.5s;"></div>
+                    </div>
+                    
+                    <div class="browser-header">
+                        <div class="browser-dots">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-area">
+                        <div class="portfolio-header">
+                            <div class="portfolio-title">📱 Mobile</div>
+                            <div class="portfolio-subtitle">Fully Responsive Experience</div>
+                        </div>
+                        
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">⚡</div>
+                                <div class="feature-title">Performance</div>
+                                <div class="feature-desc">Optimized for 60fps animations on all devices</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🎨</div>
+                                <div class="feature-title">Design System</div>
+                                <div class="feature-desc">Consistent components with theme support</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🔧</div>
+                                <div class="feature-title">Modern Stack</div>
+                                <div class="feature-desc">Built with latest web technologies</div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🌟</div>
+                                <div class="feature-title">User Experience</div>
+                                <div class="feature-desc">Intuitive navigation and interactions</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="effects-demo">Touch Optimized</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

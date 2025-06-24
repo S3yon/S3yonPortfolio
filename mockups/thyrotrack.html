@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThyroTrack - AI Health Monitoring</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            color: #2d3748;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .header .subtitle {
+            color: #667eea;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #8b5a00;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-top: 12px;
+            font-size: 0.9rem;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card h3 {
+            color: #2d3748;
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .metric:last-child {
+            border-bottom: none;
+        }
+        
+        .metric-label {
+            color: #4a5568;
+            font-weight: 500;
+        }
+        
+        .metric-value {
+            font-weight: 700;
+            color: #2d3748;
+        }
+        
+        .normal { color: #38a169; }
+        .warning { color: #d69e2e; }
+        .critical { color: #e53e3e; }
+        
+        .chart-container {
+            height: 200px;
+            background: linear-gradient(45deg, #f7fafc, #edf2f7);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .chart-bars {
+            display: flex;
+            align-items: end;
+            gap: 8px;
+            height: 120px;
+        }
+        
+        .bar {
+            width: 16px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 8px 8px 0 0;
+            opacity: 0.8;
+        }
+        
+        .predictions {
+            grid-column: 1 / -1;
+        }
+        
+        .prediction-item {
+            background: linear-gradient(45deg, #f0fff4, #e6fffa);
+            border: 2px solid #38a169;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+        
+        .prediction-item h4 {
+            color: #22543d;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .prediction-item p {
+            color: #2f855a;
+            font-size: 0.95rem;
+        }
+        
+        .ai-badge {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        
+        .tech-item {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏥 ThyroTrack</h1>
+            <p class="subtitle">AI-Powered Thyroid Health Monitoring</p>
+            <div class="badge">🏆 2nd Place @ AI in Healthcare Hackathon</div>
+            <div class="tech-stack">
+                <span class="tech-item">Python</span>
+                <span class="tech-item">XGBoost</span>
+                <span class="tech-item">Pandas</span>
+                <span class="tech-item">Scikit-Learn</span>
+                <span class="tech-item">Matplotlib</span>
+                <span class="tech-item">Seaborn</span>
+            </div>
+        </div>
+        
+        <div class="dashboard">
+            <div class="card">
+                <h3>📊 Health Metrics</h3>
+                <div class="metric">
+                    <span class="metric-label">TSH Level</span>
+                    <span class="metric-value normal">2.1 mIU/L</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">T4 Free</span>
+                    <span class="metric-value normal">1.3 ng/dL</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">T3 Free</span>
+                    <span class="metric-value warning">3.8 pg/mL</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Heart Rate</span>
+                    <span class="metric-value normal">72 BPM</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Weight</span>
+                    <span class="metric-value normal">68.5 kg</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Energy Level</span>
+                    <span class="metric-value warning">6/10</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>📈 Trend Analysis</h3>
+                <div class="chart-container">
+                    <div class="chart-bars">
+                        <div class="bar" style="height: 60%;"></div>
+                        <div class="bar" style="height: 75%;"></div>
+                        <div class="bar" style="height: 45%;"></div>
+                        <div class="bar" style="height: 80%;"></div>
+                        <div class="bar" style="height: 65%;"></div>
+                        <div class="bar" style="height: 90%;"></div>
+                        <div class="bar" style="height: 70%;"></div>
+                        <div class="bar" style="height: 85%;"></div>
+                        <div class="bar" style="height: 55%;"></div>
+                        <div class="bar" style="height: 75%;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card predictions">
+                <h3>🤖 AI-Powered Insights</h3>
+                <div class="prediction-item">
+                    <div class="ai-badge">AI PREDICTION</div>
+                    <h4>Thyroid Function Forecast</h4>
+                    <p>Based on your recent metrics, thyroid function is trending towards optimal range. Continue current medication dosage.</p>
+                </div>
+                <div class="prediction-item">
+                    <div class="ai-badge">RECOMMENDATION</div>
+                    <h4>Lifestyle Optimization</h4>
+                    <p>Energy levels show correlation with sleep patterns. Consider maintaining 7-8 hours of sleep for better thyroid health.</p>
+                </div>
+                <div class="prediction-item">
+                    <div class="ai-badge">ALERT</div>
+                    <h4>Next Check-up Reminder</h4>
+                    <p>Schedule follow-up blood work in 4 weeks to monitor T3 levels and medication effectiveness.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

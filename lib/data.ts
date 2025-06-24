@@ -97,4 +97,77 @@ export const projects = [
       "Established efficient academic records tracking system",
     ],
   },
+  {
+    title: "S3yon Portfolio",
+    slug: "s3yon-portfolio",
+    description:
+      "Modern portfolio website built with Next.js 14 featuring advanced visual effects, film grain noise, particle systems, and dark/light theme support. Showcases projects with interactive animations and clean design.",
+    techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "React", "shadcn/ui", "CSS Animations"],
+    icon: "💼",
+    features: [
+      {
+        title: "Advanced Visual Effects",
+        description: "Authentic film grain noise and sophisticated particle systems with edge-aware alpha blending",
+      },
+      {
+        title: "Responsive Design",
+        description: "Fully responsive layout with mobile-first approach and seamless device adaptation",
+      },
+      {
+        title: "Theme System",
+        description: "Dynamic dark/light theme switching with smooth transitions and theme-aware components",
+      },
+      {
+        title: "Interactive Animations",
+        description: "Custom particle physics, draggable interfaces, and smooth CSS animations throughout",
+      },
+    ],
+    achievements: [
+      "Implemented advanced particle system with 500+ particles and performance optimization",
+      "Created authentic film grain effect using real texture assets and step-based animations",
+      "Built theme-aware component system with seamless light/dark mode transitions",
+      "Achieved 100% responsive design across all device sizes and orientations",
+    ],
+    links: [
+      { label: "Live Site", url: "https://seyonportfolio.vercel.app" },
+      { label: "GitHub", url: "https://github.com/S3yon/S3yonPortfolio" }
+    ],
+  },
+  {
+    title: "PriceValve",
+    slug: "pricevalve",
+    description:
+      "Intelligent Steam game pricing platform that analyzes real-time data and provides revenue-optimizing pricing recommendations. Built for SpurHacks 2025 with full-stack Next.js and Express architecture.",
+    techStack: ["Next.js 15", "TypeScript", "Express.js", "Node.js", "Tailwind CSS", "shadcn/ui", "Steam API", "SteamSpy API"],
+    icon: "🎮",
+    award: "Built for SpurHacks 2025",
+    features: [
+      {
+        title: "Real-time Steam Data Analysis",
+        description: "Fetch and analyze game data from Steam Web API, SteamSpy API, and ITAD for comprehensive market insights",
+      },
+      {
+        title: "Revenue Optimization Engine",
+        description: "Advanced pricing algorithms with confidence scores and demand estimation models for maximum revenue",
+      },
+      {
+        title: "Competitor Analysis Dashboard",
+        description: "Comprehensive market positioning analysis with visual charts and competitor comparison tools",
+      },
+      {
+        title: "Full-Stack Architecture",
+        description: "Modern TypeScript-based backend with Express.js and Next.js 15 frontend using App Router",
+      },
+    ],
+    achievements: [
+      "Developed for SpurHacks 2025 hackathon with complete full-stack implementation",
+      "Integrated multiple Steam APIs for comprehensive game data analysis",
+      "Built intelligent pricing recommendation engine with confidence scoring",
+      "Created modern responsive interface with real-time data visualization",
+    ],
+    links: [
+      { label: "DevPost", url: "https://devpost.com/software/pricevalve" },
+      { label: "GitHub", url: "https://github.com/S3yon/PriceValve" }
+    ],
+  },
 ]

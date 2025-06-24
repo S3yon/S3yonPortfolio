@@ -110,7 +110,7 @@ export default function ClientLayout({
 
           <div className="grid-pattern absolute top-0 left-0 h-full w-full" aria-hidden="true"></div>
           <div className="grain-noise pointer-events-none fixed top-0 size-[300%]" aria-hidden="true"></div>
-          <Particle quantity={100} size={1} vx={0.05} vy={0.05} />
+          <Particle quantity={500} size={0.4} vx={0} vy={0} />
         </ThemeProvider>
       </body>
     </html>

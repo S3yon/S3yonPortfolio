@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNO Multiplayer Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 50%, #ffa726 100%);
+            min-height: 100vh;
+            overflow-x: auto;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: #2d3748;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa726);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header .subtitle {
+            color: #4a5568;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+        
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .tech-item {
+            background: rgba(255, 107, 107, 0.1);
+            color: #ff6b6b;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 2px solid rgba(255, 107, 107, 0.2);
+        }
+        
+        .game-board {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            margin-bottom: 24px;
+        }
+        
+        .players-section {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+            align-items: center;
+        }
+        
+        .player {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            border: 3px solid transparent;
+        }
+        
+        .player.active {
+            border-color: #ff6b6b;
+            background: linear-gradient(135deg, #fff5f5, #fed7d7);
+        }
+        
+        .player h3 {
+            color: #2d3748;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .player-cards {
+            font-size: 2rem;
+            margin: 12px 0;
+        }
+        
+        .card-count {
+            color: #ff6b6b;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .game-center {
+            text-align: center;
+        }
+        
+        .draw-pile, .discard-pile {
+            display: inline-block;
+            margin: 0 16px;
+        }
+        
+        .pile-label {
+            font-size: 0.9rem;
+            color: #4a5568;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .card {
+            width: 80px;
+            height: 120px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            margin: 4px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .card.red { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
+        .card.blue { background: linear-gradient(135deg, #4dabf7, #339af0); }
+        .card.green { background: linear-gradient(135deg, #51cf66, #40c057); }
+        .card.yellow { background: linear-gradient(135deg, #ffd43b, #fcc419); }
+        .card.black { background: linear-gradient(135deg, #495057, #343a40); }
+        .card.back { background: linear-gradient(135deg, #6c5ce7, #5f3dc4); }
+        
+        .player-hand {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+        
+        .game-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 24px;
+        }
+        
+        .info-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-card h3 {
+            color: #2d3748;
+            font-weight: 700;
+            margin-bottom: 16px;
+            font-size: 1.3rem;
+        }
+        
+        .rule-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .rule-item:last-child {
+            border-bottom: none;
+        }
+        
+        .rule-icon {
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+        
+        .feature-item {
+            background: linear-gradient(45deg, #f0f9ff, #e0f2fe);
+            border: 2px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+        
+        .feature-item h4 {
+            color: #0c4a6e;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .feature-item p {
+            color: #0369a1;
+            font-size: 0.95rem;
+        }
+        
+        .status-bar {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 16px 24px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .status-item {
+            font-weight: 600;
+            color: #2d3748;
+        }
+        
+        .status-value {
+            color: #ff6b6b;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎮 UNO Multiplayer Game</h1>
+            <p class="subtitle">Full-Featured Java Implementation with OOP Design Patterns</p>
+            <div class="tech-stack">
+                <span class="tech-item">Java</span>
+                <span class="tech-item">NetBeans</span>
+                <span class="tech-item">OOP</span>
+                <span class="tech-item">Design Patterns</span>
+                <span class="tech-item">UML</span>
+                <span class="tech-item">Git</span>
+            </div>
+        </div>
+        
+        <div class="game-board">
+            <div class="status-bar">
+                <div class="status-item">Game Round: <span class="status-value">3</span></div>
+                <div class="status-item">Direction: <span class="status-value">Clockwise ↻</span></div>
+                <div class="status-item">Current Color: <span class="status-value">Red</span></div>
+            </div>
+            
+            <div class="players-section">
+                <div class="player">
+                    <h3>Player 2</h3>
+                    <div class="player-cards">🃏</div>
+                    <div class="card-count">5 cards</div>
+                </div>
+                
+                <div class="game-center">
+                    <div class="draw-pile">
+                        <div class="pile-label">Draw Pile</div>
+                        <div class="card back">UNO</div>
+                    </div>
+                    <div class="discard-pile">
+                        <div class="pile-label">Discard Pile</div>
+                        <div class="card red">7</div>
+                    </div>
+                </div>
+                
+                <div class="player">
+                    <h3>Player 3</h3>
+                    <div class="player-cards">🃏</div>
+                    <div class="card-count">3 cards</div>
+                </div>
+            </div>
+            
+            <div class="player active">
+                <h3>Your Turn - Player 1</h3>
+                <div class="player-hand">
+                    <div class="card red">2</div>
+                    <div class="card blue">5</div>
+                    <div class="card red">Skip</div>
+                    <div class="card green">9</div>
+                    <div class="card yellow">+2</div>
+                    <div class="card black">Wild</div>
+                    <div class="card red">4</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-info">
+            <div class="info-card">
+                <h3>🎯 Game Features</h3>
+                <div class="feature-item">
+                    <h4>Multiplayer Support</h4>
+                    <p>Full turn-based gameplay with real-time updates and player management</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Complete Rule Enforcement</h4>
+                    <p>100% UNO rule implementation validated across 25+ test scenarios</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Design Patterns</h4>
+                    <p>Singleton and State patterns for clean, maintainable architecture</p>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <h3>⚡ Game Rules Active</h3>
+                <div class="rule-item">
+                    <span class="rule-icon">✅</span>
+                    <span>Draw +2/+4 card stacking enabled</span>
+                </div>
+                <div class="rule-item">
+                    <span class="rule-icon">🔄</span>
+                    <span>Reverse and Skip cards functional</span>
+                </div>
+                <div class="rule-item">
+                    <span class="rule-icon">🎨</span>
+                    <span>Wild card color selection active</span>
+                </div>
+                <div class="rule-item">
+                    <span class="rule-icon">🚨</span>
+                    <span>UNO call enforcement enabled</span>
+                </div>
+                <div class="rule-item">
+                    <span class="rule-icon">🏆</span>
+                    <span>Win condition validation active</span>
+                </div>
+                <div class="rule-item">
+                    <span class="rule-icon">⏱️</span>
+                    <span>Turn timer and timeout handling</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
