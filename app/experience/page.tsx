@@ -43,7 +43,7 @@ export default function Experience() {
   return (
     <section className="flex-1 flex-grow overflow-y-auto px-3 lg:px-4">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold text-text-accent mb-6">Work Experience</h1>
+        <h1 className="text-2xl font-bold text-text-accent mb-6 mt-8">Work Experience</h1>
 
         <div className="space-y-8">
           {experiences.map((exp, idx) => (

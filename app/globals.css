@@ -102,6 +102,7 @@
   background-position: center;
   opacity: 0.1;
   transition: opacity 0.3s ease;
+  animation: grid-drift 20s linear infinite;
 }
 
 [data-theme="light"] .grid-pattern {
@@ -109,14 +110,22 @@
 }
 
 .grain-noise {
-  background-image: url("/grain.webp");
-  animation: animate-grain 8s steps(10) infinite;
-  opacity: 0.03;
+  background-image: 
+    radial-gradient(circle at 20% 80%, transparent 20%, rgba(120, 119, 198, 0.3) 21%, rgba(120, 119, 198, 0.3) 29%, transparent 30%), 
+    radial-gradient(circle at 80% 20%, transparent 20%, rgba(255, 255, 255, 0.15) 21%, rgba(255, 255, 255, 0.15) 29%, transparent 30%), 
+    radial-gradient(circle at 40% 40%, transparent 20%, rgba(120, 119, 198, 0.2) 21%, rgba(120, 119, 198, 0.2) 29%, transparent 30%);
+  background-size: 50px 50px, 80px 80px, 30px 30px;
+  animation: moving-noise 15s linear infinite;
+  opacity: 0.4;
   transition: opacity 0.3s ease;
 }
 
 [data-theme="light"] .grain-noise {
-  opacity: 0.01;
+  background-image: 
+    radial-gradient(circle at 20% 80%, transparent 20%, rgba(0, 0, 0, 0.1) 21%, rgba(0, 0, 0, 0.1) 29%, transparent 30%), 
+    radial-gradient(circle at 80% 20%, transparent 20%, rgba(0, 0, 0, 0.05) 21%, rgba(0, 0, 0, 0.05) 29%, transparent 30%), 
+    radial-gradient(circle at 40% 40%, transparent 20%, rgba(0, 0, 0, 0.08) 21%, rgba(0, 0, 0, 0.08) 29%, transparent 30%);
+  opacity: 0.2;
 }
 
 .container-shadow {
@@ -239,5 +248,29 @@
   80%,
   100% {
     transform: translate(-15%, -20%);
+  }
+}
+
+@keyframes grid-drift {
+  0% {
+    background-position: 0px 0px, 0px 0px;
+  }
+  100% {
+    background-position: 5vh 5vh, 5vh 5vh;
+  }
+}
+
+@keyframes moving-noise {
+  0% {
+    background-position: 0px 0px, 0px 0px, 0px 0px;
+  }
+  33% {
+    background-position: 30px -30px, -40px 20px, 20px -20px;
+  }
+  66% {
+    background-position: -20px 40px, 30px -30px, -30px 30px;
+  }
+  100% {
+    background-position: 50px 50px, 80px 80px, 30px 30px;
   }
 }
