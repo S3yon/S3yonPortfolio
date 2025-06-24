@@ -1,17 +1,16 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
+import { useTheme } from "@/contexts/ThemeContext"
 
-interface Circle {
+interface Particle {
   x: number
   y: number
-  translateX: number
-  translateY: number
+  vx: number
+  vy: number
   size: number
+  color: string
   alpha: number
-  targetAlpha: number
-  dx: number
-  dy: number
 }
 
 interface ParticleProps {
@@ -21,173 +20,106 @@ interface ParticleProps {
   vy?: number
 }
 
-export default function Particle({ quantity = 500, size = 0.4, vx = 0, vy = 0 }: ParticleProps) {
+export default function Particle({ quantity = 100, size = 3, vx = 0.2, vy = 0.2 }: ParticleProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [mounted, setMounted] = useState(false)
-  const [circles, setCircles] = useState<Circle[]>([])
-  const [canvasSize, setCanvasSize] = useState({ w: 0, h: 0 })
-  const rafRef = useRef<number | null>(null)
-  const contextRef = useRef<CanvasRenderingContext2D | null>(null)
+  const animationRef = useRef<number>()
+  const particlesRef = useRef<Particle[]>([])
+  const { theme } = useTheme()
 
-  // Only run on client side
   useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1
-
-  const createCircleParams = (): Circle => {
-    const { w, h } = canvasSize
-    return {
-      x: Math.floor(Math.random() * w),
-      y: Math.floor(Math.random() * h),
-      translateX: 0,
-      translateY: 0,
-      size: Math.max(1, Math.floor(Math.random() * 2) + size),
-      alpha: 0,
-      targetAlpha: Number((Math.random() * 0.5 + 0.1).toFixed(1)),
-      dx: (Math.random() - 0.5) * 0.2,
-      dy: (Math.random() - 0.5) * 0.2,
-    }
-  }
-
-  const drawCircle = (circle: Circle, update = false) => {
-    const ctx = contextRef.current
-    if (!ctx) return
-
-    ctx.save()
-    ctx.translate(circle.translateX, circle.translateY)
-    ctx.beginPath()
-    ctx.arc(circle.x, circle.y, circle.size, 0, Math.PI * 2)
-    ctx.fillStyle = `rgba(255, 255, 255, ${circle.alpha})`
-    ctx.fill()
-    ctx.restore()
-
-    if (!update) {
-      setCircles((prev) => [...prev, circle])
-    }
-  }
-
-  const initCanvas = () => {
-    if (!mounted) return
-
     const canvas = canvasRef.current
-    const container = containerRef.current
-    if (!canvas || !container) return
+    if (!canvas) return
 
-    setCircles([])
-
-    const newCanvasSize = {
-      w: container.offsetWidth,
-      h: container.offsetHeight,
-    }
-    setCanvasSize(newCanvasSize)
-
-    canvas.width = newCanvasSize.w * dpr
-    canvas.height = newCanvasSize.h * dpr
-    canvas.style.width = `${newCanvasSize.w}px`
-    canvas.style.height = `${newCanvasSize.h}px`
-
-    const ctx = canvas.getContext("2d")
+    const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    ctx.scale(dpr, dpr)
-    contextRef.current = ctx
-
-    // Initial particle generation
-    const initialCircles: Circle[] = []
-    for (let i = 0; i < quantity; i++) {
-      const circle = createCircleParams()
-      initialCircles.push(circle)
+    // Set canvas size to full viewport
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
     }
-    setCircles(initialCircles)
-  }
 
-  const animate = () => {
-    if (!mounted) return
+    // Initialize particles
+    const initParticles = () => {
+      // Theme-aware particle color
+      const particleColor = theme === 'dark' ? '255, 255, 255' : '0, 0, 0'
 
-    const ctx = contextRef.current
-    if (!ctx) return
-
-    ctx.clearRect(0, 0, canvasSize.w, canvasSize.h)
-
-    setCircles((prevCircles) => {
-      const updatedCircles = [...prevCircles]
-
-      for (let i = updatedCircles.length - 1; i >= 0; i--) {
-        const circle = updatedCircles[i]
-
-        // Calculate edge distances
-        const edgeDistances = [
-          circle.x + circle.translateX - circle.size,
-          canvasSize.w - circle.x - circle.translateX - circle.size,
-          circle.y + circle.translateY - circle.size,
-          canvasSize.h - circle.y - circle.translateY - circle.size,
-        ]
-
-        const closestEdge = Math.min(...edgeDistances)
-        const alphaModifier = Math.max(Math.min(closestEdge / 20, 1), 0)
-
-        // Smooth alpha transition
-        circle.alpha +=
-          alphaModifier > 0.5 ? (circle.alpha < circle.targetAlpha ? 0.02 : 0) : circle.targetAlpha * alphaModifier
-
-        // Update position
-        circle.x += circle.dx + vx
-        circle.y += circle.dy + vy
-
-        drawCircle(circle, true)
-
-        // Replace out-of-bounds particles
-        if (
-          circle.x < -circle.size ||
-          circle.x > canvasSize.w + circle.size ||
-          circle.y < -circle.size ||
-          circle.y > canvasSize.h + circle.size
-        ) {
-          updatedCircles.splice(i, 1)
-          const newCircle = createCircleParams()
-          updatedCircles.push(newCircle)
-        }
+      particlesRef.current = []
+      for (let i = 0; i < quantity; i++) {
+        particlesRef.current.push({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          vx: (Math.random() - 0.5) * 2 + vx,
+          vy: (Math.random() - 0.5) * 2 + vy,
+          size: Math.random() * size + 1,
+          color: particleColor,
+          alpha: Math.random() * 0.3 + 0.2
+        })
       }
+    }
 
-      return updatedCircles
-    })
+    // Animation loop
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-    rafRef.current = window.requestAnimationFrame(animate)
-  }
+      particlesRef.current.forEach(particle => {
+        // Update position
+        particle.x += particle.vx
+        particle.y += particle.vy
 
-  useEffect(() => {
-    if (!mounted) return
+        // Wrap around edges
+        if (particle.x < 0) particle.x = canvas.width
+        if (particle.x > canvas.width) particle.x = 0
+        if (particle.y < 0) particle.y = canvas.height
+        if (particle.y > canvas.height) particle.y = 0
 
-    initCanvas()
+        // Draw particle
+        ctx.save()
+        
+        // Glow effect
+        ctx.shadowColor = `rgba(${particle.color}, ${particle.alpha})`
+        ctx.shadowBlur = 10
+        
+        // Main particle
+        ctx.beginPath()
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(${particle.color}, ${particle.alpha})`
+        ctx.fill()
+        
+        ctx.restore()
+      })
+
+      animationRef.current = requestAnimationFrame(animate)
+    }
+
+    // Initialize
+    resizeCanvas()
+    initParticles()
     animate()
 
-    const handleResize = () => initCanvas()
-    window.addEventListener("resize", handleResize)
+    // Handle resize
+    const handleResize = () => {
+      resizeCanvas()
+      initParticles() // Recreate particles for new dimensions
+    }
+
+    window.addEventListener('resize', handleResize)
 
     return () => {
-      window.removeEventListener("resize", handleResize)
-      if (rafRef.current != null) {
-        window.cancelAnimationFrame(rafRef.current)
-        rafRef.current = null
+      window.removeEventListener('resize', handleResize)
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
       }
     }
-  }, [mounted, quantity, size, vx, vy])
-
-  // Don't render anything on server
-  if (!mounted) {
-    return (
-      <div className="pointer-events-none absolute top-0 left-0 h-dvh w-dvw" aria-hidden="true">
-        <div className="size-full" />
-      </div>
-    )
-  }
+  }, [quantity, size, vx, vy, theme])
 
   return (
-    <div ref={containerRef} className="pointer-events-none absolute top-0 left-0 h-dvh w-dvw" aria-hidden="true">
-      <canvas ref={canvasRef} className="size-full" />
+    <div className="pointer-events-none fixed top-0 left-0 w-full h-full" style={{ zIndex: 1 }}>
+      <canvas
+        ref={canvasRef}
+        className="w-full h-full"
+        style={{ display: 'block' }}
+      />
     </div>
   )
 }
