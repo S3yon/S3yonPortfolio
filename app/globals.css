@@ -109,7 +109,7 @@
 }
 
 .grain-noise {
-  background-image: url('/assets/grain.webp');
+  background-image: url('/grain.png');
   animation: animate-grain 8s steps(10) infinite;
   opacity: 0.05;
   pointer-events: none;
