@@ -13,11 +13,8 @@ const nextConfig = {
     unoptimized: true,
   },
   output: "export",
-  trailingSlash: true,
+  trailingSlash: false,
   basePath: "",
-  assetPrefix: "",
-  // Ensure static assets are properly handled
-  distDir: 'out',
 }
 
 module.exports = nextConfig
