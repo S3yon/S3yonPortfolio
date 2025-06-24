@@ -109,15 +109,35 @@
 }
 
 .grain-noise {
-  background-image: url('/grain.png');
+  background: repeating-conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0deg,
+    rgba(255, 255, 255, 0.01) 0.5deg,
+    transparent 1deg,
+    rgba(255, 255, 255, 0.02) 1.5deg,
+    transparent 2deg
+  ),
+  repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    rgba(255, 255, 255, 0.005) 1px,
+    transparent 2px
+  ),
+  repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    rgba(255, 255, 255, 0.005) 1px,
+    transparent 2px
+  );
+  background-size: 4px 4px, 2px 2px, 2px 2px;
   animation: animate-grain 8s steps(10) infinite;
-  opacity: 0.05;
+  opacity: 0.8;
   pointer-events: none;
   filter: invert(0);
 }
 
 [data-theme="light"] .grain-noise {
-  opacity: 0.03;
+  opacity: 0.6;
   filter: invert(1);
 }
 
