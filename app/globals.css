@@ -109,15 +109,16 @@
 }
 
 .grain-noise {
+  /* ✅ Correct - absolute path from public folder */
   background-image: url('/grain.png');
   animation: animate-grain 8s steps(10) infinite;
-  opacity: 0.3;
+  opacity: 0.05;
   pointer-events: none;
   filter: invert(0);
 }
 
 [data-theme="light"] .grain-noise {
-  opacity: 0.2;
+  opacity: 0.03;
   filter: invert(1);
 }
 
