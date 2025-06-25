@@ -97,11 +97,11 @@
 
 .grid-pattern {
   background-image: 
-    linear-gradient(to right, var(--color-ash-500) 2px, transparent 2px),
-    linear-gradient(to bottom, var(--color-ash-500) 2px, transparent 2px);
+    linear-gradient(to right, var(--color-ash-500) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-ash-500) 1px, transparent 1px);
   background-size: 5vh 5vh;
   background-position: center;
-  opacity: 0.2;
+  opacity: 0.18;
 }
 
 [data-theme="light"] .grid-pattern {
@@ -112,13 +112,13 @@
   /* ✅ Root level grain.png - should work on all platforms */
   background-image: url('/grain.png');
   animation: animate-grain 8s steps(10) infinite;
-  opacity: 0.3;
+  opacity: 0.03;
   pointer-events: none;
   filter: invert(0);
 }
 
 [data-theme="light"] .grain-noise {
-  opacity: 0.15;
+  opacity: 0.02;
   filter: invert(1);
 }
 
