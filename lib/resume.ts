@@ -7,7 +7,7 @@ export const resumeData = {
     phone: "+1 (416) 409-0855",
     linkedin: "https://linkedin.com/in/Seyon-sri",
     github: "https://github.com/S3yon",
-    portfolio: "https://seyonportfolio.vercel.app"
+    portfolio: "https://seyons.com"
   },
   
   summary: "Dedicated software developer with expertise in web development, database design, and cloud technologies. Strong background in Python, Java, JavaScript, and modern frameworks with proven experience in technical support and system optimization.",

@@ -129,7 +129,7 @@ export const projects = [
       "Achieved 100% responsive design across all device sizes and orientations",
     ],
     links: [
-      { label: "Live Site", url: "https://seyonportfolio.vercel.app" },
+      { label: "Live Site", url: "https://seyons.com" },
       { label: "GitHub", url: "https://github.com/S3yon/S3yonPortfolio" }
     ],
   },
