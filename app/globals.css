@@ -109,16 +109,16 @@
 }
 
 .grain-noise {
-  /* ✅ Correct - absolute path from public folder */
+  /* ✅ Root level grain.png - should work on all platforms */
   background-image: url('/grain.png');
   animation: animate-grain 8s steps(10) infinite;
-  opacity: 0.05;
+  opacity: 0.3;
   pointer-events: none;
   filter: invert(0);
 }
 
 [data-theme="light"] .grain-noise {
-  opacity: 0.03;
+  opacity: 0.15;
   filter: invert(1);
 }
 

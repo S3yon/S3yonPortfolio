@@ -15,6 +15,10 @@ const nextConfig = {
   output: "export",
   trailingSlash: false,
   basePath: "",
+  assetPrefix: "",
+  publicRuntimeConfig: {
+    staticFolder: '/public',
+  },
 }
 
 module.exports = nextConfig
