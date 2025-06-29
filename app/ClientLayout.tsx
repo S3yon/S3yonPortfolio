@@ -29,7 +29,7 @@ export default function ClientLayout({
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 1024)
+      setIsMobile(window.innerWidth <= 768)
     }
 
     checkMobile()
@@ -37,15 +37,22 @@ export default function ClientLayout({
     return () => window.removeEventListener("resize", checkMobile)
   }, [])
 
-  const toggleFullscreen = () => {
+  const toggleFullscreen = async () => {
     if (isMobile) return
-    if (!isFullscreen && containerRef.current) {
-      containerRef.current.requestFullscreen()
-    } else {
-      document.exitFullscreen()
-      setPosition({ x: 0, y: 0 })
+    
+    try {
+      if (!isFullscreen && containerRef.current) {
+        await containerRef.current.requestFullscreen()
+        setIsFullscreen(true)
+      } else if (document.fullscreenElement) {
+        await document.exitFullscreen()
+        setPosition({ x: 0, y: 0 })
+        setIsFullscreen(false)
+      }
+    } catch (error) {
+      // Silently handle fullscreen errors (user denied, not supported, etc.)
+      console.warn('Fullscreen request failed:', error)
     }
-    setIsFullscreen(!isFullscreen)
   }
 
   const onMouseDown = (e: React.MouseEvent) => {
@@ -95,7 +102,7 @@ export default function ClientLayout({
         <ThemeProvider>
           <main
             ref={containerRef}
-            className={`bg-gradient-to-br from-bg-secondary to-bg-tertiary z-10 flex h-dvh w-dvw flex-col overflow-hidden lg:h-[75dvh] lg:w-[70dvw] ${
+            className={`bg-gradient-to-br from-bg-secondary to-bg-tertiary z-10 flex h-dvh w-dvw flex-col overflow-hidden md:h-[75dvh] md:w-[70dvw] ${
               isFullscreen || isMobile ? "rounded-none" : "rounded-xl"
             } ${!isFullscreen && !isMobile ? "container-shadow" : ""}`}
             style={{
