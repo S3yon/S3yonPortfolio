@@ -30,6 +30,7 @@ export default function Particle({ quantity = 500, size = 0.4, vx = 0, vy = 0 }:
   const contextRef = useRef<CanvasRenderingContext2D | null>(null)
   const [canvasSize, setCanvasSize] = useState({ w: 0, h: 0 })
   const [isInitialized, setIsInitialized] = useState(false)
+  const [showParticles, setShowParticles] = useState(false)
   const { theme } = useTheme()
 
   const dpr = typeof window !== 'undefined' ? window.devicePixelRatio : 1
@@ -140,9 +141,18 @@ export default function Particle({ quantity = 500, size = 0.4, vx = 0, vy = 0 }:
     rafRef.current = window.requestAnimationFrame(animate)
   }, [canvasSize.w, canvasSize.h, vx, vy, createCircleParams, drawCircle])
 
-  // Initialize particles after canvas is ready
+  // Delay particles by 1 second after page load
   useEffect(() => {
-    if (!isInitialized || !contextRef.current || canvasSize.w === 0 || canvasSize.h === 0) return
+    const timer = setTimeout(() => {
+      setShowParticles(true)
+    }, 1000)
+
+    return () => clearTimeout(timer)
+  }, [])
+
+  // Initialize particles after canvas is ready and delay is complete
+  useEffect(() => {
+    if (!isInitialized || !showParticles || !contextRef.current || canvasSize.w === 0 || canvasSize.h === 0) return
 
     // Clear existing particles
     circlesRef.current = []
@@ -158,7 +168,7 @@ export default function Particle({ quantity = 500, size = 0.4, vx = 0, vy = 0 }:
       window.cancelAnimationFrame(rafRef.current)
     }
     animate()
-  }, [isInitialized, quantity, canvasSize.w, canvasSize.h, createCircleParams, drawCircle, animate])
+  }, [isInitialized, showParticles, quantity, canvasSize.w, canvasSize.h, createCircleParams, drawCircle, animate])
 
   // Handle canvas initialization and resize
   useEffect(() => {
@@ -182,7 +192,7 @@ export default function Particle({ quantity = 500, size = 0.4, vx = 0, vy = 0 }:
   return (
     <div 
       ref={containerRef}
-      className="pointer-events-none absolute top-0 left-0 h-dvh w-dvw" 
+      className={`pointer-events-none absolute top-0 left-0 h-dvh w-dvw transition-opacity duration-500 ${showParticles ? 'opacity-100' : 'opacity-0'}`}
       aria-hidden="true"
     >
       <canvas ref={canvasRef} className="size-full" />

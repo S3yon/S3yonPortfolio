@@ -85,9 +85,9 @@ export default function Navbar() {
           </div>
         </div>
         <div className="flex items-center gap-2 sm:gap-4">
-          <span className="text-text-secondary text-xs hidden sm:inline">-- VIEW --</span>
+          <span className="text-text-secondary text-xs hidden sm:inline">see more →</span>
           <div className="relative group">
-            <div className="bg-text-accent text-bg-primary px-2 sm:px-3 py-1 text-xs rounded cursor-pointer">CONTACT ME</div>
+            <div className="bg-text-accent text-bg-primary px-2 sm:px-3 py-1 text-xs rounded cursor-pointer">SEYON</div>
             <div className="absolute bottom-full right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
               <div className="bg-bg-secondary border border-border-primary rounded shadow-lg p-2 min-w-[140px]">
                 <div className="flex flex-col gap-2">
