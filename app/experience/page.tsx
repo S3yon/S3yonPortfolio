@@ -57,25 +57,25 @@ export default function Experience() {
         }}></div>
       </div>
 
-      <div className="relative z-10 px-4 lg:px-8 py-12">
+      <div className="relative z-10 px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
           <motion.div 
-            className="text-center mb-16"
+            className="text-center mb-10 sm:mb-12 lg:mb-16"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl lg:text-5xl font-bold text-text-primary mb-6 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-text-primary mb-4 sm:mb-6 tracking-tight">
               Work Experience
             </h1>
-            <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg lg:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed px-2 sm:px-4">
               Professional experience spanning technical support, database management, and operations optimization
             </p>
           </motion.div>
 
           {/* Experience Timeline */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             {experiences.map((exp, idx) => (
               <motion.div
                 key={idx}
@@ -88,47 +88,47 @@ export default function Experience() {
                 }}
                 className="group relative"
               >
-                <div className="bg-bg-secondary/60 backdrop-blur-lg border border-border-primary/50 rounded-2xl p-8 hover:border-text-accent/50 transition-all duration-500 hover:shadow-2xl hover:shadow-text-accent/10 hover:-translate-y-1 relative overflow-hidden">
+                <div className="bg-bg-secondary/60 backdrop-blur-lg border border-border-primary/50 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 hover:border-text-accent/50 transition-all duration-500 hover:shadow-2xl hover:shadow-text-accent/10 hover:-translate-y-1 relative overflow-hidden">
                   {/* Card gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-text-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
                   
                   <div className="relative z-10">
                     {/* Header */}
-                    <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
+                    <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-4 sm:mb-6">
                       <div className="space-y-2">
-                        <h2 className="text-2xl font-bold text-text-primary group-hover:text-text-accent transition-colors">
+                        <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-text-primary group-hover:text-text-accent transition-colors">
                           {exp.title}
                         </h2>
-                        <div className="flex items-center gap-2 text-lg">
+                        <div className="flex items-center gap-2 text-sm sm:text-base lg:text-lg">
                           <span className="text-text-accent font-semibold">{exp.company}</span>
                           <span className="text-text-secondary">•</span>
                           <span className="text-text-secondary">{exp.location}</span>
                         </div>
-                        <div className="flex items-center gap-2 text-sm">
-                          <span className="px-3 py-1 bg-text-accent/10 text-text-accent rounded-full border border-text-accent/20 font-medium">
+                        <div className="flex items-center gap-2 text-xs sm:text-sm">
+                          <span className="px-2 sm:px-3 py-1 bg-text-accent/10 text-text-accent rounded-full border border-text-accent/20 font-medium">
                             {exp.type}
                           </span>
                         </div>
                       </div>
-                      <div className="mt-4 lg:mt-0 lg:text-right">
-                        <div className="px-4 py-2 bg-bg-tertiary/80 rounded-lg border border-border-primary/30">
-                          <p className="text-text-primary font-semibold">{exp.duration}</p>
+                      <div className="mt-3 sm:mt-4 lg:mt-0 lg:text-right">
+                        <div className="px-3 sm:px-4 py-1.5 sm:py-2 bg-bg-tertiary/80 rounded-lg border border-border-primary/30">
+                          <p className="text-sm sm:text-base text-text-primary font-semibold">{exp.duration}</p>
                         </div>
                       </div>
                     </div>
 
                     {/* Achievements */}
-                    <div className="space-y-3">
-                      <h3 className="text-sm font-bold text-text-primary uppercase tracking-wide mb-4">
+                    <div className="space-y-2 sm:space-y-3">
+                      <h3 className="text-xs sm:text-sm font-bold text-text-primary uppercase tracking-wide mb-3 sm:mb-4">
                         Key Achievements
                       </h3>
-                      <ul className="space-y-3">
+                      <ul className="space-y-2 sm:space-y-3">
                         {exp.achievements.map((achievement, achievementIdx) => (
                           <li 
                             key={achievementIdx} 
-                            className="flex items-start gap-3 text-text-secondary leading-relaxed"
+                            className="flex items-start gap-2 sm:gap-3 text-sm sm:text-base text-text-secondary leading-relaxed"
                           >
-                            <span className="text-text-accent font-bold text-lg mt-0.5 flex-shrink-0">•</span>
+                            <span className="text-text-accent font-bold text-base sm:text-lg mt-0.5 flex-shrink-0">•</span>
                             <span>{achievement}</span>
                           </li>
                         ))}
@@ -137,10 +137,6 @@ export default function Experience() {
                   </div>
                 </div>
 
-                {/* Experience Number Badge */}
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-text-accent text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
-                  {idx + 1}
-                </div>
               </motion.div>
             ))}
           </div>

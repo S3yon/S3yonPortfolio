@@ -177,7 +177,7 @@ const Timeline = () => {
   return (
     <div ref={containerRef} className="relative py-20 overflow-hidden">
       {/* Timeline Container with single-side layout */}
-      <div className="max-w-4xl mx-auto px-4">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {timelineData.map((item, index) => {
           return (
             <motion.div
@@ -194,11 +194,11 @@ const Timeline = () => {
                 delay: 0,
                 ease: [0.25, 0.1, 0.25, 1]
               }}
-              className="relative flex items-start gap-6 mb-16"
+              className="relative flex items-start gap-4 sm:gap-6 mb-12 sm:mb-16"
             >
               {/* Timeline Symbol */}
               <motion.div 
-                className="flex-shrink-0 flex items-center gap-4"
+                className="flex-shrink-0 flex items-center gap-3 sm:gap-4"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ 
                   opacity: visibleItems.has(item.id) ? 1 : 0,
@@ -206,15 +206,15 @@ const Timeline = () => {
                 }}
                 transition={{ delay: 0.1, duration: 0.4 }}
               >
-                <div className={`w-12 h-12 rounded-full border-2 border-text-accent flex items-center justify-center ${getTypeColor(item.type)} shadow-lg hover:scale-110 transition-transform duration-300`}>
-                  <div className="text-white text-sm">
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-text-accent flex items-center justify-center ${getTypeColor(item.type)} shadow-lg hover:scale-110 transition-transform duration-300`}>
+                  <div className="text-white text-xs sm:text-sm">
                     {getTypeIcon(item.type)}
                   </div>
                 </div>
                 
                 {/* Animated Divider */}
                 <motion.div 
-                  className="h-0.5 bg-gradient-to-r from-text-accent to-transparent w-8"
+                  className="h-0.5 bg-gradient-to-r from-text-accent to-transparent w-6 sm:w-8 hidden sm:block"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: visibleItems.has(item.id) ? 1 : 0 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
@@ -224,7 +224,7 @@ const Timeline = () => {
 
               {/* Main Content */}
               <motion.div 
-                className="flex-1 space-y-6"
+                className="flex-1 space-y-4 sm:space-y-6 min-w-0"
                 initial={{ opacity: 0, x: -40 }}
                 animate={{
                   opacity: visibleItems.has(item.id) ? 1 : 0,
@@ -236,7 +236,7 @@ const Timeline = () => {
                 <div className="space-y-3">
                   {/* Date Badge */}
                   <motion.span 
-                    className="inline-block px-4 py-2 text-sm font-medium bg-text-accent/10 text-text-accent rounded-full border border-text-accent/20 backdrop-blur-sm"
+                    className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium bg-text-accent/10 text-text-accent rounded-full border border-text-accent/20 backdrop-blur-sm"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ 
                       opacity: visibleItems.has(item.id) ? 1 : 0,
@@ -256,20 +256,20 @@ const Timeline = () => {
                     }}
                     transition={{ delay: 0.25, duration: 0.4 }}
                   >
-                    <div className="flex items-center gap-3 flex-wrap">
-                      <h3 className="text-2xl lg:text-3xl font-bold text-text-primary leading-tight">
+                    <div className="flex items-start gap-2 sm:gap-3 flex-wrap">
+                      <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-text-primary leading-tight break-words">
                         {item.title}
                       </h3>
                       {item.award && (
-                        <span className="px-3 py-1 text-xs bg-yellow-500/20 text-yellow-400 rounded-full animate-pulse border border-yellow-400/30">
+                        <span className="px-2 py-1 text-xs bg-yellow-500/20 text-yellow-400 rounded-full animate-pulse border border-yellow-400/30 flex-shrink-0">
                           ✨ {item.award}
                         </span>
                       )}
                     </div>
                     {item.company && (
-                      <p className="text-xl font-semibold text-text-accent mt-2">{item.company}</p>
+                      <p className="text-base sm:text-lg lg:text-xl font-semibold text-text-accent mt-2">{item.company}</p>
                     )}
-                    <span className={`inline-block px-4 py-1 text-sm rounded-full ${getTypeColor(item.type)} text-white capitalize font-medium mt-3 shadow-md`}>
+                    <span className={`inline-block px-3 py-1 text-xs sm:text-sm rounded-full ${getTypeColor(item.type)} text-white capitalize font-medium mt-2 sm:mt-3 shadow-md`}>
                       {item.type}
                     </span>
                   </motion.div>

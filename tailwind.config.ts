@@ -69,6 +69,21 @@ const config: Config = {
         "text-accent": "var(--text-accent)",
         "border-primary": "var(--border-primary)",
         "border-secondary": "var(--border-secondary)",
+        // Theme-aware standard colors
+        yellow: {
+          400: "var(--yellow-400)",
+          500: "var(--yellow-500)",
+          900: "var(--yellow-900)",
+        },
+        blue: {
+          500: "var(--blue-500)",
+        },
+        green: {
+          500: "var(--green-500)",
+        },
+        purple: {
+          500: "var(--purple-500)",
+        },
       },
       fontFamily: {
         mono: [

@@ -18,25 +18,25 @@ export default function Projects() {
         }}></div>
       </div>
 
-      <div className="relative z-10 px-4 lg:px-8 py-12">
+      <div className="relative z-10 px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <motion.div 
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl lg:text-5xl font-bold text-text-primary mb-6 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary mb-4 sm:mb-6 tracking-tight">
               Projects
             </h1>
-            <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed px-4">
               A collection of projects showcasing my development skills and problem-solving approach
             </p>
           </motion.div>
 
           {/* Projects Grid */}
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
             {projects.map((project, i) => (
               <motion.div
                 key={i}
@@ -62,36 +62,36 @@ export default function Projects() {
                       </div>
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-bg-secondary/80 to-transparent"></div>
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <h3 className="text-xl font-bold text-text-primary mb-2 group-hover:text-text-accent transition-colors">
+                    <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4">
+                      <h3 className="text-lg sm:text-xl font-bold text-text-primary mb-2 group-hover:text-text-accent transition-colors">
                         {project.title}
                       </h3>
                     </div>
                   </div>
 
                   {/* Project Content */}
-                  <div className="p-6 space-y-4">
+                  <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
                     {/* Description */}
-                    <p className="text-text-secondary leading-relaxed line-clamp-3">
+                    <p className="text-sm sm:text-base text-text-secondary leading-relaxed line-clamp-3">
                       {project.description}
                     </p>
 
                     {/* Tech Stack */}
                     <div className="space-y-2">
-                      <h4 className="text-sm font-bold text-text-primary uppercase tracking-wide">
+                      <h4 className="text-xs sm:text-sm font-bold text-text-primary uppercase tracking-wide">
                         Tech Stack
                       </h4>
                       <div className="flex flex-wrap gap-2">
                         {project.techStack.slice(0, 4).map((tech, idx) => (
                           <span 
                             key={idx} 
-                            className="px-3 py-1 text-xs bg-bg-tertiary/80 text-text-secondary rounded-full border border-border-primary/30 font-medium"
+                            className="px-2 sm:px-3 py-1 text-xs bg-bg-tertiary/80 text-text-secondary rounded-full border border-border-primary/30 font-medium"
                           >
                             {tech}
                           </span>
                         ))}
                         {project.techStack.length > 4 && (
-                          <span className="px-3 py-1 text-xs text-text-accent rounded-full border border-text-accent/30 font-medium">
+                          <span className="px-2 sm:px-3 py-1 text-xs text-text-accent rounded-full border border-text-accent/30 font-medium">
                             +{project.techStack.length - 4} more
                           </span>
                         )}
@@ -108,10 +108,6 @@ export default function Projects() {
                   </div>
                 </Link>
 
-                {/* Project Number Badge */}
-                <div className="absolute -top-3 -right-3 w-8 h-8 bg-text-accent text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
-                  {i + 1}
-                </div>
               </motion.div>
             ))}
           </div>
