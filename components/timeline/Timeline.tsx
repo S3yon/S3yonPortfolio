@@ -26,8 +26,8 @@ const timelineData: TimelineItem[] = [
     technologies: ["React", "Node.js", "Steam API", "Data Analysis"],
     award: "Built for SpurHacks 2025",
     links: [
-      { name: "DevPost", url: "#" },
-      { name: "GitHub", url: "#" }
+      { name: "DevPost", url: "https://devpost.com/software/pricevalve" },
+      { name: "GitHub", url: "https://github.com/S3yon/PriceValve" }
     ]
   },
   {
