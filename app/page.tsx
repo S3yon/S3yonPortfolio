@@ -29,9 +29,9 @@ export default function Home() {
   return (
     <div className={`flex-1 overflow-y-scroll ${!isTypingComplete ? 'overflow-y-hidden' : ''}`} style={{ scrollbarGutter: 'stable' }}>
       {/* Hero Section - Full height with centered content */}
-      <section className="min-h-full flex flex-col items-center justify-center space-y-6 px-8 relative">
+      <section className="min-h-full flex flex-col items-center justify-center space-y-4 sm:space-y-6 px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center">
-          <pre className="text-text-primary text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight font-mono tracking-wider">
+          <pre className="text-text-primary text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight font-mono tracking-wider">
             {displayedText}
             <span className="animate-pulse">|</span>
           </pre>
@@ -39,17 +39,17 @@ export default function Home() {
 
         <p className="sr-only">Seyon Sri</p>
 
-        <div className="text-center space-y-2 max-w-2xl">
-          <p className={`text-text-primary text-lg transition-all duration-300 transform ${currentIndex >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        <div className="text-center space-y-2 max-w-2xl px-4">
+          <p className={`text-text-primary text-base sm:text-lg transition-all duration-300 transform ${currentIndex >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             Software Development & Network Engineering Student
           </p>
-          <p className={`text-text-secondary transition-all duration-300 transform ${currentIndex >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <p className={`text-text-secondary text-sm sm:text-base transition-all duration-300 transform ${currentIndex >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             Passionate about turning complex problems into elegant solutions and always looking for new challenges to solve :)
           </p>
         </div>
 
         {/* Social Media Links - Staggered animation matching typing speed */}
-        <div className="flex items-center space-x-6 mt-8">
+        <div className="flex items-center space-x-4 sm:space-x-6 mt-6 sm:mt-8">
           <a 
             href="https://www.linkedin.com/in/seyon-sri/" 
             target="_blank" 
@@ -113,11 +113,11 @@ export default function Home() {
 
       {/* Timeline Section - Only visible after typing completes */}
       {isTypingComplete && (
-        <section className="px-8 py-20">
+        <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-text-primary mb-4">My Journey</h2>
-              <p className="text-text-secondary">
+            <div className="text-center mb-10 sm:mb-12 lg:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold text-text-primary mb-3 sm:mb-4">My Journey</h2>
+              <p className="text-text-secondary text-sm sm:text-base px-4">
                 A chronological timeline of my projects, experience, and education
               </p>
             </div>
@@ -131,43 +131,43 @@ export default function Home() {
 
       {/* Footer - Only visible after typing completes */}
       {isTypingComplete && (
-        <footer className="px-8 py-12 border-t border-border-primary">
+        <footer className="px-4 sm:px-6 lg:px-8 py-8 sm:py-12 border-t border-border-primary">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center space-y-4">
+            <div className="text-center space-y-4 sm:space-y-6">
               {/* Navigation arrows */}
-              <div className="flex items-center justify-center space-x-6 text-text-secondary">
-                <div className="flex items-center space-x-2 text-sm">
-                  <svg className="w-4 h-4 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="grid grid-cols-2 sm:flex sm:items-center sm:justify-center gap-3 sm:gap-6 text-text-secondary">
+                <div className="flex items-center justify-center space-x-2 text-sm">
+                  <svg className="w-4 h-4 animate-pulse flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11l5-5m0 0l5 5m-5-5v12" />
                   </svg>
-                  <span>Learn</span>
+                  <span className="hidden sm:inline">Learn</span>
                   <Link href="/about" className="text-text-accent hover:text-text-primary transition-colors underline">
                     about
                   </Link>
                 </div>
-                <div className="flex items-center space-x-2 text-sm">
-                  <svg className="w-4 h-4 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center justify-center space-x-2 text-sm">
+                  <svg className="w-4 h-4 animate-pulse flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11l5-5m0 0l5 5m-5-5v12" />
                   </svg>
-                  <span>Browse</span>
+                  <span className="hidden sm:inline">Browse</span>
                   <Link href="/projects" className="text-text-accent hover:text-text-primary transition-colors underline">
                     projects
                   </Link>
                 </div>
-                <div className="flex items-center space-x-2 text-sm">
-                  <svg className="w-4 h-4 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center justify-center space-x-2 text-sm">
+                  <svg className="w-4 h-4 animate-pulse flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11l5-5m0 0l5 5m-5-5v12" />
                   </svg>
-                  <span>View</span>
+                  <span className="hidden sm:inline">View</span>
                   <Link href="/experience" className="text-text-accent hover:text-text-primary transition-colors underline">
                     experience
                   </Link>
                 </div>
-                <div className="flex items-center space-x-2 text-sm">
-                  <svg className="w-4 h-4 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center justify-center space-x-2 text-sm">
+                  <svg className="w-4 h-4 animate-pulse flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11l5-5m0 0l5 5m-5-5v12" />
                   </svg>
-                  <span>Download</span>
+                  <span className="hidden sm:inline">Download</span>
                   <Link href="/about#resume" className="text-text-accent hover:text-text-primary transition-colors underline">
                     resume
                   </Link>

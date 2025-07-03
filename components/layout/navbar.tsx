@@ -50,13 +50,13 @@ export default function Navbar() {
 
   return (
     <nav className="bg-bg-secondary/50 border-t border-border-primary text-sm select-none">
-      <div className="flex items-center justify-between px-2 sm:px-4 py-2">
-        <div className="flex items-center gap-2 sm:gap-4">
-          <div className="flex items-center gap-2 text-text-secondary">
+      <div className="flex items-center justify-between px-2 sm:px-4 py-2 min-h-[44px]">
+        <div className="flex items-center gap-1 sm:gap-2 lg:gap-4 flex-1 min-w-0">
+          <div className="flex items-center gap-1 sm:gap-2 text-text-secondary flex-shrink-0">
             <div className="w-2 h-4 bg-text-accent"></div>
             <span className="text-xs hidden sm:inline">~/seyon</span>
           </div>
-          <div className="flex items-center gap-1 overflow-x-auto flex-shrink-0">
+          <div className="flex items-center gap-1 overflow-x-auto flex-shrink-0 scrollbar-hide">
             {navbarMenu.map(({ title, href, key }, i) => {
               const parts = getHighlightedParts(title, key)
               const isOnCurrentPath = isActive(href, pathname)
@@ -65,7 +65,7 @@ export default function Navbar() {
                 <Link
                   key={i}
                   href={href}
-                  className={`px-2 sm:px-3 py-1 text-xs sm:text-sm transition-all whitespace-nowrap ${
+                  className={`px-1.5 sm:px-2 lg:px-3 py-1 text-xs sm:text-sm transition-all whitespace-nowrap flex-shrink-0 ${
                     isOnCurrentPath
                       ? "bg-text-accent text-bg-primary rounded"
                       : "text-text-secondary hover:text-text-primary"
@@ -84,12 +84,12 @@ export default function Navbar() {
             })}
           </div>
         </div>
-        <div className="flex items-center gap-2 sm:gap-4">
-          <span className="text-text-secondary text-xs hidden sm:inline">see more →</span>
+        <div className="flex items-center gap-1 sm:gap-2 lg:gap-4 flex-shrink-0">
+          <span className="text-text-secondary text-xs hidden lg:inline">see more →</span>
           <div className="relative group">
-            <div className="bg-text-accent text-bg-primary px-2 sm:px-3 py-1 text-xs rounded cursor-pointer">SEYON</div>
+            <div className="bg-text-accent text-bg-primary px-2 sm:px-3 py-1 text-xs rounded cursor-pointer flex-shrink-0">SEYON</div>
             <div className="absolute bottom-full right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-              <div className="bg-bg-secondary border border-border-primary rounded shadow-lg p-2 min-w-[140px]">
+              <div className="bg-bg-secondary border border-border-primary rounded shadow-lg p-2 min-w-[120px] sm:min-w-[140px]">
                 <div className="flex flex-col gap-2">
                   <a
                     href="https://www.linkedin.com/in/seyon-sri/"

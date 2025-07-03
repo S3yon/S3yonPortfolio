@@ -7,9 +7,10 @@ interface HeaderProps {
   isFullscreen: boolean
   onMouseDown: (e: React.MouseEvent) => void
   toggleFullscreen: () => void
+  isMobile?: boolean
 }
 
-export default function Header({ isFullscreen, onMouseDown, toggleFullscreen }: HeaderProps) {
+export default function Header({ isFullscreen, onMouseDown, toggleFullscreen, isMobile = false }: HeaderProps) {
   const { theme, toggleTheme } = useTheme()
 
   const handleHeaderKeyDown = (event: React.KeyboardEvent) => {
@@ -28,30 +29,34 @@ export default function Header({ isFullscreen, onMouseDown, toggleFullscreen }: 
       onMouseDown={onMouseDown}
       onKeyDown={handleHeaderKeyDown}
     >
-      <div className="group absolute top-1/2 hidden -translate-y-1/2 items-center lg:flex">
+      <div className="group absolute top-1/2 flex -translate-y-1/2 items-center">
         <button
-          className="grid h-6 w-6 place-items-center rounded-full"
-          onClick={() => window.close()}
+          className={`grid h-5 w-5 sm:h-6 sm:w-6 place-items-center rounded-full ${!isMobile ? 'hover:cursor-pointer' : 'cursor-default'}`}
+          onClick={isMobile ? undefined : () => window.close()}
           aria-label="Close"
+          disabled={isMobile}
         >
-          <div className="h-3 w-3 rounded-full bg-[#898989] transition-colors group-hover:bg-[#FF6057]"></div>
+          <div className={`h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#898989] transition-colors ${!isMobile ? 'group-hover:bg-[#FF6057]' : ''}`}></div>
         </button>
-        <button className="grid h-6 w-6 place-items-center rounded-full" aria-label="Minimize">
-          <div className="h-3 w-3 rounded-full bg-[#898989] transition-colors group-hover:bg-[#FEBC2D]"></div>
+        <button 
+          className={`grid h-5 w-5 sm:h-6 sm:w-6 place-items-center rounded-full ${!isMobile ? 'hover:cursor-pointer' : 'cursor-default'}`}
+          aria-label="Minimize"
+          disabled={isMobile}
+        >
+          <div className={`h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#898989] transition-colors ${!isMobile ? 'group-hover:bg-[#FEBC2D]' : ''}`}></div>
         </button>
         <button
-          className="grid h-6 w-6 place-items-center rounded-full"
-          onClick={toggleFullscreen}
+          className={`grid h-5 w-5 sm:h-6 sm:w-6 place-items-center rounded-full ${!isMobile ? 'hover:cursor-pointer' : 'cursor-default'}`}
+          onClick={isMobile ? undefined : toggleFullscreen}
           aria-label={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+          disabled={isMobile}
         >
-          <div className="h-3 w-3 rounded-full bg-[#898989] transition-colors group-hover:bg-[#2BC840]"></div>
+          <div className={`h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#898989] transition-colors ${!isMobile ? 'group-hover:bg-[#2BC840]' : ''}`}></div>
         </button>
       </div>
-      <p className="mx-auto hidden font-medium select-none lg:block text-text-primary">s3yon</p>
-      <p className="mx-auto block font-medium select-none lg:hidden text-text-primary">s3yon</p>
 
       {/* Dark/Light Mode Toggle - Now visible on both mobile and desktop */}
-      <div className="flex items-center">
+      <div className="flex items-center ml-auto">
         <button
           onClick={toggleTheme}
           className="flex items-center justify-center w-8 h-8 rounded-full bg-bg-tertiary/50 border border-border-secondary hover:bg-bg-tertiary/80 transition-all duration-300 group"

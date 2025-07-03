@@ -63,11 +63,46 @@
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   }
 
+  html {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
+
   body {
     font-family: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Monaco, Consolas, Liberation Mono, Menlo,
       monospace;
     background-color: var(--bg-primary);
     color: var(--text-primary);
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Prevent any child elements from causing horizontal overflow */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Mobile-specific overflow prevention */
+  @media (max-width: 768px) {
+    * {
+      max-width: 100% !important;
+    }
+    
+    .overflow-x-auto {
+      overflow-x: auto;
+    }
+  }
+
+  /* Hide scrollbars but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 
   button:not(:disabled),
@@ -131,6 +166,10 @@
   opacity: 0.03;
   pointer-events: none;
   filter: invert(0);
+  /* Prevent horizontal overflow */
+  left: -100%;
+  top: -100%;
+  contain: layout style paint;
 }
 
 [data-theme="light"] .grain-noise {
