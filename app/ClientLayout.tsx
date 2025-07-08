@@ -7,6 +7,7 @@ import Navbar from "@/components/layout/navbar"
 import Particle from "@/components/layout/particle"
 import PWARegistration from "@/components/PWARegistration"
 import PWAInstallPrompt from "@/components/PWAInstallPrompt"
+import PWAStandaloneDetector from "@/components/PWAStandaloneDetector"
 import { ThemeProvider } from "@/contexts/ThemeContext"
 import { JetBrains_Mono } from "next/font/google"
 import { useState, useRef, useEffect } from "react"
@@ -103,8 +104,10 @@ export default function ClientLayout({
       <head>
         <meta name="application-name" content="Seyon Sri Portfolio" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Seyon Sri" />
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-TileColor" content="#0a0a0a" />
@@ -116,6 +119,7 @@ export default function ClientLayout({
       <body className="bg-bg-primary text-text-primary grid h-dvh place-items-center overflow-hidden antialiased font-mono w-full max-w-full">
         <ThemeProvider>
           <PWARegistration />
+          <PWAStandaloneDetector />
           <main
             ref={containerRef}
             className={`bg-gradient-to-br from-bg-secondary to-bg-tertiary z-10 flex h-dvh flex-col overflow-hidden md:h-[75dvh] md:w-[70dvw] ${
