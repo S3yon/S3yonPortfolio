@@ -102,28 +102,6 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      typography: {
-        ash: {
-          css: {
-            "--tw-prose-body": "var(--text-secondary)",
-            "--tw-prose-headings": "var(--text-accent)",
-            "--tw-prose-lead": "var(--text-primary)",
-            "--tw-prose-links": "var(--text-accent)",
-            "--tw-prose-bold": "var(--text-accent)",
-            "--tw-prose-counters": "var(--text-primary)",
-            "--tw-prose-bullets": "var(--text-primary)",
-            "--tw-prose-hr": "var(--border-secondary)",
-            "--tw-prose-quotes": "var(--text-accent)",
-            "--tw-prose-quote-borders": "var(--border-secondary)",
-            "--tw-prose-captions": "var(--text-secondary)",
-            "--tw-prose-code": "var(--text-accent)",
-            "--tw-prose-pre-code": "var(--text-accent)",
-            "--tw-prose-pre-bg": "var(--bg-secondary)",
-            "--tw-prose-th-borders": "var(--border-primary)",
-            "--tw-prose-td-borders": "var(--border-secondary)",
-          },
-        },
-      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -140,7 +118,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography"), require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate")],
 }
 
 export default config
