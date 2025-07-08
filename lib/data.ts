@@ -1,5 +1,43 @@
 export const projects = [
   {
+    title: "404cast",
+    slug: "404cast",
+    description:
+      "Interactive gamified safety awareness web app for urban environments. Built for Hack404, uses Toronto Police Service data with machine learning to teach users about neighborhood safety through Street View challenges.",
+    techStack: ["React", "Vite", "Node.js", "Express.js", "MongoDB", "Google Maps API", "PWA", "JavaScript"],
+    icon: "🚨",
+    award: "Built for Hack404",
+    features: [
+      {
+        title: "Interactive Street View Gaming",
+        description: "Users guess kidnapping likelihood for Toronto locations using Google Maps Street View panoramas",
+      },
+      {
+        title: "Machine Learning Risk Assessment",
+        description: "ML model trained on official Toronto Police Service data provides accurate neighborhood risk predictions",
+      },
+      {
+        title: "Progressive Web App",
+        description: "Full PWA functionality with offline support and mobile-responsive design using Vite PWA",
+      },
+      {
+        title: "Competitive Leaderboard System",
+        description: "Real-time scoring system with MongoDB backend tracking user performance and rankings",
+      },
+    ],
+    achievements: [
+      "Developed for Hack404 hackathon with complete full-stack implementation",
+      "Integrated Google Maps Street View API for immersive location-based gameplay",
+      "Implemented machine learning model using real Toronto Police Service crime data",
+      "Built responsive PWA supporting both mobile and desktop with offline capabilities",
+      "Created competitive scoring system with MongoDB for persistent user data",
+    ],
+    links: [
+      { label: "Live Site", url: "https://www.404cast.com" },
+      { label: "DevPost", url: "https://devpost.com/software/404cast" }
+    ],
+  },
+  {
     title: "ThyroTrack",
     slug: "thyrotrack",
     description:

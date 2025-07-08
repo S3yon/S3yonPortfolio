@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion } from "framer-motion"
 
 interface TimelineItem {
   id: string
@@ -18,6 +18,24 @@ interface TimelineItem {
 
 const timelineData: TimelineItem[] = [
   {
+    id: "404cast",
+    date: "July 5, 2025",
+    title: "404cast @ Hack404",
+    type: "project",
+    description: "Created a gamified safety awareness tool that helps users learn about Toronto neighborhood safety by guessing kidnapping likelihood from Street View locations. Built with real Toronto Police Service data and ML predictions to promote urban safety awareness.",
+    technologies: ["React", "Vite", "Node.js", "Express.js", "MongoDB", "Google Maps API", "PWA"],
+    award: "Built for Hack404",
+    achievements: [
+      "Gamified safety learning with Street View integration",
+      "ML risk assessment using Toronto Police Service data",
+      "Google Street View API for immersive location experiences"
+    ],
+    links: [
+      { name: "Live Site", url: "https://www.404cast.com" },
+      { name: "DevPost", url: "https://devpost.com/software/404cast" }
+    ]
+  },
+  {
     id: "pricevalve",
     date: "June 20, 2025",
     title: "PriceValve @ SpurHacks",
@@ -25,6 +43,11 @@ const timelineData: TimelineItem[] = [
     description: "Built a real-time dashboard at SpurHacks that helps Steam game developers find optimal pricing using regional data and market trends",
     technologies: ["React", "Node.js", "Steam API", "Data Analysis"],
     award: "Built for SpurHacks 2025",
+    achievements: [
+      "Integrated multiple Steam APIs for real-time game data analysis",
+      "Built revenue optimization engine with confidence scoring",
+      "Created responsive interface with data visualization"
+    ],
     links: [
       { name: "DevPost", url: "https://devpost.com/software/pricevalve" },
       { name: "GitHub", url: "https://github.com/S3yon/PriceValve" }
@@ -110,15 +133,6 @@ const timelineData: TimelineItem[] = [
 
 const Timeline = () => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const lineRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start center", "end center"]
-  })
-
-  // Create a more responsive scroll progress that tracks the actual viewport position
-  const lineProgress = useTransform(scrollYProgress, [0, 1], [0, 1])
-  
   const [visibleItems, setVisibleItems] = useState<Set<string>>(new Set())
 
 

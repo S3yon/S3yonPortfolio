@@ -78,6 +78,18 @@ export const resumeData = {
   
   projects: [
     {
+      name: "404cast - Interactive Safety Awareness App",
+      period: "Jul 2025",
+      description: "Built for Hack404: Interactive gamified safety awareness web app teaching urban navigation through Street View challenges",
+      technologies: ["React", "Vite", "Node.js", "Express.js", "MongoDB", "Google Maps API", "PWA"],
+      achievements: [
+        "Developed full-stack PWA with React/Vite frontend and Express.js/MongoDB backend for real-time user scoring",
+        "Integrated Google Maps Street View API to create immersive location-based gaming experiences",
+        "Implemented machine learning model using official Toronto Police Service crime data for accurate risk assessment",
+        "Built responsive progressive web app with offline support and mobile-first design for urban safety education"
+      ]
+    },
+    {
       name: "ThyroTrack - 2nd Place @ AI in Healthcare Hackathon",
       period: "Feb 2025",
       description: "Built an AI-powered health monitoring app for thyroid patients using Python to track and analyze 10+ key health metrics",

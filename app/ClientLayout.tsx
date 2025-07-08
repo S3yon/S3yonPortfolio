@@ -5,6 +5,8 @@ import "./globals.css"
 import Header from "@/components/layout/header"
 import Navbar from "@/components/layout/navbar"
 import Particle from "@/components/layout/particle"
+import PWARegistration from "@/components/PWARegistration"
+import PWAInstallPrompt from "@/components/PWAInstallPrompt"
 import { ThemeProvider } from "@/contexts/ThemeContext"
 import { JetBrains_Mono } from "next/font/google"
 import { useState, useRef, useEffect } from "react"
@@ -98,8 +100,21 @@ export default function ClientLayout({
 
   return (
     <html lang="en" suppressHydrationWarning className={jetBrainsMono.variable}>
+      <head>
+        <meta name="application-name" content="Seyon Sri Portfolio" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Seyon Sri" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-TileColor" content="#0a0a0a" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <link rel="apple-touch-icon" href="/icons/icon-152x152.svg" />
+        <link rel="mask-icon" href="/icons/icon-192x192.svg" color="#22c55e" />
+      </head>
       <body className="bg-bg-primary text-text-primary grid h-dvh place-items-center overflow-hidden antialiased font-mono w-full max-w-full">
         <ThemeProvider>
+          <PWARegistration />
           <main
             ref={containerRef}
             className={`bg-gradient-to-br from-bg-secondary to-bg-tertiary z-10 flex h-dvh flex-col overflow-hidden md:h-[75dvh] md:w-[70dvw] ${
@@ -118,6 +133,7 @@ export default function ClientLayout({
           <div className="grid-pattern absolute top-0 left-0 h-full w-full" aria-hidden="true"></div>
           <div className="grain-noise pointer-events-none fixed size-[300%]" aria-hidden="true"></div>
           <Particle quantity={500} size={0.4} vx={0} vy={0} />
+          <PWAInstallPrompt />
         </ThemeProvider>
       </body>
     </html>

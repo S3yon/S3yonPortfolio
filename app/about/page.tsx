@@ -23,7 +23,7 @@ export default function About() {
   }
 
   return (
-    <section className="flex-1 flex-grow overflow-y-auto">
+    <section className="flex-1 flex-grow overflow-y-auto relative">
       <div className="h-full flex flex-col">
         {/* Tab bar */}
         <div className="flex items-center bg-bg-secondary/30 border-b border-border-primary px-4">
