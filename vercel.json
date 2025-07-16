@@ -1,8 +1,10 @@
 {
+  "framework": null,
   "buildCommand": "npm run build",
   "outputDirectory": "out",
+  "installCommand": "npm install",
   "rewrites": [
-    { "source": "/((?!api/)(?!sw\\.js)(?!manifest\\.json)(?!favicon)(?!icons/)(?!assets/)(?!static/)(?!_next/).*)", "destination": "/" }
+    { "source": "/((?!api/)(?!sw\\.js)(?!manifest\\.json)(?!favicon)(?!icons/)(?!assets/)(?!static/)(?!_next/).*)", "destination": "/index.html" }
   ],
   "headers": [
     {
