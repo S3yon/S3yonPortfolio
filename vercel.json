@@ -2,7 +2,7 @@
   "buildCommand": "npm run build",
   "outputDirectory": "out",
   "rewrites": [
-    { "source": "/((?!api/|sw\\.js|manifest\\.json|favicon|icons/|assets/|static/|_next/|.*\\.(png|jpg|jpeg|gif|webp|svg|ico|js|css|json|pdf|txt|html)).*)", "destination": "/" }
+    { "source": "/((?!api/)(?!sw\\.js)(?!manifest\\.json)(?!favicon)(?!icons/)(?!assets/)(?!static/)(?!_next/).*)", "destination": "/" }
   ],
   "headers": [
     {
