@@ -75,4 +75,28 @@ Fully responsive across all device sizes:
 
 ## 🔧 Development
 
+### Quick Start
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Start development server:
+   ```bash
+   npm run dev
+   ```
+
+3. Build for production:
+   ```bash
+   npm run build
+   ```
+
+### Available Commands
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
 Built with modern development practices and tools for maintainable, scalable code.
