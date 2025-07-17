@@ -12,7 +12,7 @@ export default function PWAStandaloneDetector() {
     if (isStandalone || isInStandaloneMode) {
       // Add PWA class to body for standalone-specific styling
       document.body.classList.add('pwa-standalone')
-      console.log('Running in PWA standalone mode')
+      // Running in PWA standalone mode
       
       // iOS specific adjustments
       if (isIOS) {

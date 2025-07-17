@@ -1,3 +1,4 @@
+import './globals.css'
 import type React from "react"
 import type { Metadata } from "next"
 import ClientLayout from "./ClientLayout"
@@ -71,6 +72,3 @@ export default function RootLayout({
 }) {
   return <ClientLayout>{children}</ClientLayout>
 }
-
-
-import './globals.css'

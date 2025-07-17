@@ -8,7 +8,7 @@ export default function PWARegistration() {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js')
         .then((registration) => {
-          console.log('Service Worker registered with scope:', registration.scope)
+          // Service Worker registered successfully
           
           // Check for updates
           registration.addEventListener('updatefound', () => {
@@ -16,14 +16,14 @@ export default function PWARegistration() {
             if (newWorker) {
               newWorker.addEventListener('statechange', () => {
                 if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                  console.log('New service worker installed, page refresh may be needed')
+                  // New service worker installed, consider showing update notification
                 }
               })
             }
           })
         })
         .catch((error) => {
-          console.error('Service Worker registration failed:', error)
+          // Service Worker registration failed - silent fallback
         })
     }
 
@@ -33,11 +33,11 @@ export default function PWARegistration() {
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault()
       deferredPrompt = e
-      console.log('PWA install prompt available')
+      // PWA install prompt available
     }
 
     const handleAppInstalled = () => {
-      console.log('PWA was installed')
+      // PWA was installed successfully
       deferredPrompt = null
     }
 

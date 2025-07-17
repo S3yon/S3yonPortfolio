@@ -54,7 +54,7 @@ export default function ClientLayout({
       }
     } catch (error) {
       // Silently handle fullscreen errors (user denied, not supported, etc.)
-      console.warn('Fullscreen request failed:', error)
+      // Fullscreen request failed - gracefully degrade
     }
   }
 
@@ -116,12 +116,52 @@ export default function ClientLayout({
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        
+        {/* Structured Data for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Seyon Sri",
+              "jobTitle": "Software Developer",
+              "description": "Software Development & Network Engineering student at Sheridan College with a passion for turning complex problems into elegant solutions.",
+              "url": "https://seyons.com",
+              "image": "https://seyons.com/opengraph-image.png",
+              "sameAs": [
+                "https://www.linkedin.com/in/seyon-sri/",
+                "https://github.com/S3yon",
+                "https://x.com/s3yon_",
+                "https://www.instagram.com/s3yon"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Greater Toronto Area",
+                "addressCountry": "Canada"
+              },
+              "alumniOf": {
+                "@type": "CollegeOrUniversity",
+                "name": "Sheridan College"
+              }
+            })
+          }}
+        />
       </head>
       <body className="bg-bg-primary text-text-primary grid h-dvh place-items-center overflow-hidden antialiased font-mono w-full max-w-full">
+        {/* Skip Navigation for Accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-text-accent text-bg-primary px-4 py-2 rounded z-50 font-medium"
+        >
+          Skip to main content
+        </a>
+        
         <ThemeProvider>
           <PWARegistration />
           <PWAStandaloneDetector />
           <main
+            id="main-content"
             ref={containerRef}
             className={`bg-gradient-to-br from-bg-secondary to-bg-tertiary z-10 flex h-dvh flex-col overflow-hidden md:h-[75dvh] md:w-[70dvw] ${
               isFullscreen || isMobile ? "rounded-none w-full max-w-full" : "rounded-xl w-dvw"

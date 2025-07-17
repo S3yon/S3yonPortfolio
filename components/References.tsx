@@ -134,7 +134,7 @@ const References = () => {
 
                   {/* Quote */}
                   <blockquote className="text-text-primary text-sm sm:text-base lg:text-lg leading-relaxed mb-6 sm:mb-8 font-medium italic relative">
-                    "{reference.quote}"
+                    &ldquo;{reference.quote}&rdquo;
                   </blockquote>
 
                   {/* Author Info */}

@@ -117,7 +117,7 @@ export default function About() {
                 <div className="flex">
                   <div className="text-text-secondary w-6 sm:w-8 text-right mr-2 sm:mr-4 select-none flex-shrink-0">11</div>
                   <div className="ml-2 sm:ml-4 min-w-0">
-                    <span className="text-text-secondary">// {"Sleeping"}</span>
+                    <span className="text-text-secondary">{`// Sleeping`}</span>
                   </div>
                 </div>
                 <div className="flex">

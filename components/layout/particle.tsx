@@ -48,7 +48,7 @@ export default function Particle({ quantity = 500, size = 0.4, vx = 0, vy = 0 }:
       dx: (Math.random() - 0.5) * 0.2,
       dy: (Math.random() - 0.5) * 0.2
     }
-  }, [canvasSize.w, canvasSize.h, size])
+  }, [canvasSize, size])
 
   const drawCircle = useCallback((circle: Circle, update = false) => {
     const ctx = contextRef.current
