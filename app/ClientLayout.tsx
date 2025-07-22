@@ -164,7 +164,7 @@ export default function ClientLayout({
             id="main-content"
             ref={containerRef}
             className={`bg-gradient-to-br from-bg-secondary to-bg-tertiary z-10 flex h-dvh flex-col overflow-hidden md:h-[75dvh] md:w-[70dvw] ${
-              isFullscreen || isMobile ? "rounded-none w-full max-w-full" : "rounded-xl w-dvw"
+              isFullscreen || isMobile ? "rounded-none w-full max-w-full pb-safe" : "rounded-xl w-dvw"
             } ${!isFullscreen && !isMobile ? "container-shadow" : ""}`}
             style={{
               transform: `translate(${position.x}px, ${position.y}px)`,
